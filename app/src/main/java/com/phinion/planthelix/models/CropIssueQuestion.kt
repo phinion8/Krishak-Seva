@@ -7,6 +7,5 @@ data class CropIssueQuestion(
     val image: String = "",
     val question: String = "",
     val questionDescription: String = "",
-    val answer: String = "",
-    val status: String = ""
+    val expertAnswer: String = ""
 )
