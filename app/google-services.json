@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "767800955816",
+    "project_id": "crop-healix",
+    "storage_bucket": "crop-healix.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:767800955816:android:1a7ea025d9826c0c2c439d",
+        "android_client_info": {
+          "package_name": "com.phinion.planthelix"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC3leV_A2hbcIjo1gCRJMZlgbrYO6EQPqM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
