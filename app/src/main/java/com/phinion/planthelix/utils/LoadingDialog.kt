@@ -20,4 +20,11 @@ class LoadingDialog(private val context: Context) {
         loadingDialog.window?.setBackgroundDrawable(ColorDrawable(context.resources.getColor(R.color.transparent)))
     }
 
+    fun showLoadingDialog(){
+        loadingDialog.show()
+    }
+
+    fun dismissLoadingDialog(){
+        loadingDialog.dismiss()
+    }
 }

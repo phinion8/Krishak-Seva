@@ -16,14 +16,17 @@ class CropQuestionAdapter(private val context: Context, private val questionList
 
     class CropQuestionViewHolder(private val context: Context,private val binding: CropQuestionItemLayoutBinding): RecyclerView.ViewHolder(binding.root){
 
-        fun bind(languageItem: CropIssueQuestion){
+        fun bind(cropIssueQuestion: CropIssueQuestion){
 
-            binding.tvQuestion.text = languageItem.title
-            binding.tvDesctiption.text = languageItem.description
+            binding.tvQuestion.text = cropIssueQuestion.question
+            binding.tvDesctiption.text = cropIssueQuestion.questionDescription
 
-            Glide.with(context)
-                .load(languageItem.image)
-                .into(binding.questionImg)
+            if (cropIssueQuestion.image.isNotEmpty()){
+                Glide.with(context)
+                    .load(cropIssueQuestion.image[0])
+                    .into(binding.questionImg)
+            }
+
 
         }
     }

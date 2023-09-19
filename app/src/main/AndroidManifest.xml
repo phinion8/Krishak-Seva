@@ -2,7 +2,19 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <uses-feature
+        android:name="android.hardware.camera"
+        android:required="false" />
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_MEDIA_IMAGES" />
+    <uses-permission android:name="android.permission.READ_MEDIA_VIDEO" />
+    <uses-permission android:name="android.permission.MANAGE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.CAMERA" />
+
     <application
+        android:name=".MyApplication"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
@@ -13,7 +25,13 @@
         android:theme="@style/Theme.PlantHelix"
         tools:targetApi="31">
         <activity
-            android:name=".AskQuestionActivity"
+            android:name=".ExpertVerifyActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ExpertMainActivity"
+            android:exported="false" />
+        <activity
+            android:name=".screens.ask_question_screen.AskQuestionActivity"
             android:exported="false" />
         <activity
             android:name=".SplashScreenActivity"
@@ -32,7 +50,7 @@
             android:exported="false" />
         <activity
             android:name=".screens.LanguageSelectionActivity"
-            android:exported="true"></activity>
+            android:exported="true" />
         <activity
             android:name=".screens.SignOptionSelectionActivity"
             android:exported="false" />
@@ -51,6 +69,16 @@
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
+
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="com.phinion.planthelix.fileProvider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths" />
+        </provider>
     </application>
 
 </manifest>

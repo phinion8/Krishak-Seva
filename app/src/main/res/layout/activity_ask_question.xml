@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:background="@color/white"
     android:layout_height="match_parent"
-    tools:context=".AskQuestionActivity">
+    tools:context=".screens.ask_question_screen.AskQuestionActivity">
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView3"
@@ -95,13 +95,14 @@
             app:layout_constraintStart_toEndOf="@+id/imageView8"
             app:layout_constraintTop_toTopOf="@+id/imageView8" />
 
-        <TextView
+        <Button
             android:id="@+id/send_btn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="16dp"
             android:fontFamily="@font/poppins_semibold"
             android:text="Send"
+            android:backgroundTint="@color/gray100"
             android:textColor="#4CAF50"
             android:textSize="16sp"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -186,6 +187,7 @@
         android:fontFamily="@font/poppins_medium"
         android:text="Click + to add images."
         android:textSize="16sp"
+        android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/textView16"
@@ -203,5 +205,17 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:tint="@color/blue"
-        app:srcCompat="@drawable/ic_gallery" />
+        app:srcCompat="@drawable/ic_gallery"
+        android:focusable="true" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/photo_list"
+        android:layout_width="0dp"
+        android:layout_height="205dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView16" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
