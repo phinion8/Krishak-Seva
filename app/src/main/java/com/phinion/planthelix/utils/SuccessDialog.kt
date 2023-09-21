@@ -23,19 +23,15 @@ class SuccessDialog(context: Context) {
             .setView(successDialogLayoutBinding.root)
             .setCancelable(false)
             .create()
-        successDialogLayoutBinding.okBtn.setOnClickListener {
-
-            successDialog.dismiss()
-            val intent = Intent(context, MainActivity::class.java)
-            context.startActivity(intent)
-            (context as Activity).finish()
-        }
         successDialog.window!!.setBackgroundDrawable(ColorDrawable(context.resources.getColor(R.color.transparent)))
     }
 
-    fun showSuccessDialog(title: String, message: String){
+    fun showSuccessDialog(title: String, message: String, okOnClick:() -> Unit){
         successDialogLayoutBinding.successText.text = message
         successDialogLayoutBinding.successTitle.text = title
+        successDialogLayoutBinding.okBtn.setOnClickListener {
+            okOnClick()
+        }
         successDialog.show()
     }
 

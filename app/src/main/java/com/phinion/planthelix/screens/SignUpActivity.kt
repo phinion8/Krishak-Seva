@@ -84,7 +84,7 @@ class SignUpActivity : AppCompatActivity() {
                 } else {
                     Toast.makeText(
                         this,
-                        "Please agree to our terms and conditions.",
+                        getString(com.phinion.planthelix.R.string.please_agree_to_our_terms_and_conditions_string),
                         Toast.LENGTH_SHORT
                     ).show()
 
@@ -118,14 +118,14 @@ class SignUpActivity : AppCompatActivity() {
                     // Sign in success, update UI with the signed-in user's information
                     val user = auth.currentUser
                     if (user != null) {
-                        addDataToDatabase(user.uid, name, email, password, signUpCoins, false)
+                        addDataToDatabase(user.uid, name, email, signUpCoins)
                     }
                 } else {
                     // If sign in fails, display a message to the user.
                     loadingDialog.dismiss()
                     Log.w("TAG", "createUserWithEmail:failure", task.exception)
                     Toast.makeText(
-                        baseContext, "Authentication failed.",
+                        baseContext, getString(com.phinion.planthelix.R.string.authentication_failed),
                         Toast.LENGTH_SHORT
                     ).show()
                     Toast.makeText(this, task.exception?.localizedMessage, Toast.LENGTH_SHORT)
@@ -139,12 +139,10 @@ class SignUpActivity : AppCompatActivity() {
         uid: String,
         name: String,
         email: String,
-        password: String,
-        signUpCoins: Int,
-        b: Boolean
+        signUpCoins: Int
     ) {
         val db = Firebase.firestore
-        val user = FarmerUser(name, email, password, signUpCoins)
+        val user = FarmerUser(name, email, signUpCoins)
         db.collection("users")
             .document(uid)
             .set(user)
@@ -153,13 +151,13 @@ class SignUpActivity : AppCompatActivity() {
                     loadingDialog.dismiss()
                     startActivity(Intent(this, MainActivity::class.java))
                     finish()
-                    Toast.makeText(this, "Account created successfully...", Toast.LENGTH_SHORT)
+                    Toast.makeText(this, getString(com.phinion.planthelix.R.string.account_created_successfully_string), Toast.LENGTH_SHORT)
                         .show()
                 } else {
                     loadingDialog.dismiss()
                     Toast.makeText(
                         this,
-                        "Something went wrong.\nPlease try again later.",
+                        getString(com.phinion.planthelix.R.string.something_went_wrong_please_try_again_later_string),
                         Toast.LENGTH_SHORT
                     ).show()
                 }

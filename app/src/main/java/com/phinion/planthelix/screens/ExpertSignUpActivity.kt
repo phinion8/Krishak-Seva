@@ -17,6 +17,7 @@ import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import com.phinion.planthelix.ExpertMainActivity
+import com.phinion.planthelix.ExpertVerifyActivity
 import com.phinion.planthelix.MainActivity
 import com.phinion.planthelix.R
 import com.phinion.planthelix.databinding.ActivityExpertLogInBinding
@@ -56,7 +57,7 @@ class ExpertSignUpActivity : AppCompatActivity() {
 
 
         binding.loginBtn2.setOnClickListener {
-            startActivity(Intent(this, LogInActivity::class.java))
+            startActivity(Intent(this, ExpertLogInActivity::class.java))
         }
 
 
@@ -84,7 +85,7 @@ class ExpertSignUpActivity : AppCompatActivity() {
                 } else {
                     Toast.makeText(
                         this,
-                        "Please agree to our terms and conditions.",
+                        getString(R.string.please_agree_to_our_terms_and_conditions),
                         Toast.LENGTH_SHORT
                     ).show()
 
@@ -118,7 +119,7 @@ class ExpertSignUpActivity : AppCompatActivity() {
                     // Sign in success, update UI with the signed-in user's information
                     val user = auth.currentUser
                     if (user != null) {
-                        addDataToDatabase(user.uid, name, email, password, signUpCoins, false)
+                        addDataToDatabase(user.uid, name, email, signUpCoins)
                     }
                 } else {
                     // If sign in fails, display a message to the user.
@@ -139,27 +140,25 @@ class ExpertSignUpActivity : AppCompatActivity() {
         uid: String,
         name: String,
         email: String,
-        password: String,
-        signUpCoins: Int,
-        b: Boolean
+        signUpCoins: Int
     ) {
         val db = Firebase.firestore
-        val user = ExpertUser(name, email, password, signUpCoins)
+        val user = ExpertUser(name, email, signUpCoins)
         db.collection("users")
             .document(uid)
             .set(user)
             .addOnCompleteListener {
                 if (it.isSuccessful) {
                     loadingDialog.dismiss()
-                    startActivity(Intent(this, ExpertMainActivity::class.java))
+                    startActivity(Intent(this, ExpertVerifyActivity::class.java))
                     finish()
-                    Toast.makeText(this, "Account created successfully...", Toast.LENGTH_SHORT)
+                    Toast.makeText(this, getString(R.string.account_created_successfully), Toast.LENGTH_SHORT)
                         .show()
                 } else {
                     loadingDialog.dismiss()
                     Toast.makeText(
                         this,
-                        "Something went wrong.\nPlease try again later.",
+                        getString(R.string.something_went_wrong_please_try_again_later),
                         Toast.LENGTH_SHORT
                     ).show()
                 }

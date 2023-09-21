@@ -7,7 +7,9 @@
         android:required="false" />
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_MEDIA_IMAGES" />
     <uses-permission android:name="android.permission.READ_MEDIA_VIDEO" />
     <uses-permission android:name="android.permission.MANAGE_EXTERNAL_STORAGE" />
@@ -24,6 +26,24 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.PlantHelix"
         tools:targetApi="31">
+        <activity
+            android:name=".EarnCoinsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".RecentQuestionsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".WalletActivity"
+            android:exported="false" />
+        <activity
+            android:name=".screens.chat_bot_screen.ChatBotActivity"
+            android:exported="false" />
+        <activity
+            android:name=".UserQuestionDetail"
+            android:exported="false" />
+        <activity
+            android:name=".ExpertQuestionDetailActivity"
+            android:exported="false" />
         <activity
             android:name=".ExpertVerifyActivity"
             android:exported="false" />

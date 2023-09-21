@@ -32,12 +32,26 @@ class FirebaseRepository(private val context: Context) {
             val documentReference = database.collection("questions").add(cropIssueQuestion).await()
             val documentId = documentReference.id
 
+            database.collection("questions").document(documentId)
+                .update("id", documentId).await()
+
             if (userId != null) {
+
+                val userDocumentReference =
+                    database.collection("users").document(userId)
+                        .collection("askedQuestions")
+                        .add(cropIssueQuestion.copy(id = documentId)).await()
+                val userDocumentId = userDocumentReference.id
+
                 database.collection("users")
                     .document(userId)
                     .collection("askedQuestions")
-                    .add(cropIssueQuestion.copy(id = documentId))
-                    .await()
+                    .document(userDocumentId)
+                    .update("userDocumentId", userDocumentId).await()
+
+                database.collection("questions")
+                    .document(documentId)
+                    .update("userDocumentId", userDocumentId).await()
 
                 emit(Resource.Success(Result(false, "Success", "")))
             } else {
@@ -52,7 +66,9 @@ class FirebaseRepository(private val context: Context) {
     fun getQuestionList() = flow<Resource<List<CropIssueQuestion>>> {
         emit(Resource.Loading())
         try {
-            val questionCollection = userId?.let { database.collection("users").document(it).collection("askedQuestions") }
+            val questionCollection = userId?.let {
+                database.collection("users").document(it).collection("askedQuestions")
+            }
             val querySnapshot = questionCollection?.get()?.await()
             val items = querySnapshot?.toObjects(CropIssueQuestion::class.java)
             if (items != null) {
@@ -65,7 +81,6 @@ class FirebaseRepository(private val context: Context) {
             emit(Resource.Error(e.message ?: "An error occurred..."))
         }
     }
-
 
 
 }

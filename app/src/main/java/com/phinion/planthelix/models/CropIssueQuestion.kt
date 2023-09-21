@@ -7,5 +7,6 @@ data class CropIssueQuestion(
     val image: List<String> = ArrayList(),
     val question: String = "",
     val questionDescription: String = "",
-    val expertAnswer: String = ""
+    val expertAnswer: String = "",
+    val userDocumentId: String = ""
 )

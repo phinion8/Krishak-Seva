@@ -12,11 +12,15 @@ import com.phinion.planthelix.databinding.LanguageItemLayoutBinding
 import com.phinion.planthelix.models.CropIssueQuestion
 import com.phinion.planthelix.models.LanguageItem
 
-class CropQuestionAdapter(private val context: Context, private val questionList: List<CropIssueQuestion>): RecyclerView.Adapter<CropQuestionAdapter.CropQuestionViewHolder>() {
+class CropQuestionAdapter(private val context: Context, private val questionList: List<CropIssueQuestion>, private val expertQuestionCallback: ExpertQuestionCallback): RecyclerView.Adapter<CropQuestionAdapter.CropQuestionViewHolder>() {
 
-    class CropQuestionViewHolder(private val context: Context,private val binding: CropQuestionItemLayoutBinding): RecyclerView.ViewHolder(binding.root){
+    class CropQuestionViewHolder(private val context: Context,private val binding: CropQuestionItemLayoutBinding, private val expertQuestionCallback: ExpertQuestionCallback): RecyclerView.ViewHolder(binding.root){
 
-        fun bind(cropIssueQuestion: CropIssueQuestion){
+        fun bind(cropIssueQuestion: CropIssueQuestion, position: Int){
+
+            binding.detailsBtn.setOnClickListener {
+                expertQuestionCallback.expertQuestionOnClick(position)
+            }
 
             binding.tvQuestion.text = cropIssueQuestion.question
             binding.tvDesctiption.text = cropIssueQuestion.questionDescription
@@ -34,13 +38,13 @@ class CropQuestionAdapter(private val context: Context, private val questionList
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CropQuestionAdapter.CropQuestionViewHolder {
         val inflater = LayoutInflater.from(parent.context)
         val binding = CropQuestionItemLayoutBinding.inflate(inflater, parent, false)
-        return CropQuestionViewHolder(context, binding)
+        return CropQuestionViewHolder(context, binding, expertQuestionCallback)
     }
 
     override fun onBindViewHolder(holder: CropQuestionAdapter.CropQuestionViewHolder, position: Int) {
 
         val questionItem = questionList[position]
-        holder.bind(questionItem)
+        holder.bind(questionItem, position)
 
 
     }

@@ -41,18 +41,31 @@ class SplashScreenActivity : AppCompatActivity() {
                 firebaseAuth.currentUser?.let {
                     database.collection("users").document(it.uid)
                         .addSnapshotListener { value, error ->
-
                             val expertUser = value?.get("expertUser") as Boolean
-                            this@SplashScreenActivity.showToast(expertUser.toString())
                             if (expertUser != null) {
                                 isExpert = expertUser
                             }
 
                             if (isExpert) {
-                                Intent(this@SplashScreenActivity, ExpertMainActivity::class.java).apply {
-                                    startActivity(this)
-                                    finish()
+                                firebaseAuth.currentUser?.let {
+                                    database.collection("users")
+                                        .document(it.uid)
+                                        .addSnapshotListener { value, error ->
+
+                                            val isVerified = value?.getBoolean("verified")
+                                            if (isVerified == true) {
+                                                startActivity(Intent(this@SplashScreenActivity, ExpertMainActivity::class.java))
+                                                finish()
+                                            }else{
+                                                Intent(this@SplashScreenActivity, ExpertVerifyActivity::class.java).apply {
+                                                    startActivity(this)
+                                                    finish()
+                                                }
+                                            }
+
+                                        }
                                 }
+
 
                             } else {
                                 Intent(this@SplashScreenActivity, MainActivity::class.java).apply {

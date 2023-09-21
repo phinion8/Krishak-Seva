@@ -19,4 +19,9 @@
         android:name="com.phinion.planthelix.ProfileFragment"
         android:label="fragment_profile"
         tools:layout="@layout/fragment_profile" />
+    <fragment
+        android:id="@+id/askAIFragment"
+        android:name="com.phinion.planthelix.AskAIFragment"
+        android:label="fragment_ask_a_i"
+        tools:layout="@layout/fragment_ask_a_i" />
 </navigation>

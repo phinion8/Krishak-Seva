@@ -66,7 +66,7 @@ class LogInActivity : AppCompatActivity() {
                             startActivity(Intent(this, MainActivity::class.java))
 
                             Toast.makeText(
-                                baseContext, "LogIn Success...",
+                                baseContext, getString(R.string.login_success_string),
                                 Toast.LENGTH_SHORT
                             ).show()
                         } else {

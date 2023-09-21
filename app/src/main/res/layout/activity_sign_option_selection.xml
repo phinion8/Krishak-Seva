@@ -63,7 +63,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/poppins_semibold"
-                android:text="Farmer"
+                android:text="@string/farmer"
                 android:textColor="@color/black"
                 app:buttonTint="@color/blue" />
 
@@ -72,7 +72,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/poppins_semibold"
-                android:text="Gardner"
+                android:text="@string/gardner"
                 android:textColor="@color/black"
                 app:buttonTint="@color/blue" />
 
@@ -81,7 +81,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/poppins_semibold"
-                android:text="Expert"
+                android:text="@string/expert"
                 android:textColor="@color/black"
                 app:buttonTint="@color/blue" />
         </RadioGroup>

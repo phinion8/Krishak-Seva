@@ -13,6 +13,7 @@ import android.provider.MediaStore
 import android.util.Config
 import android.util.Log
 import android.view.View
+import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
 import androidx.core.app.ActivityCompat
@@ -24,10 +25,16 @@ import androidx.core.view.size
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.FieldValue
+import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.firestore.ktx.toObject
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
 import com.google.firebase.storage.ktx.storage
+import com.phinion.planthelix.MainActivity
+import com.phinion.planthelix.R
 import com.phinion.planthelix.adapters.ChoosedPhotoAdapter
 import com.phinion.planthelix.adapters.RemoveImageCallback
 import com.phinion.planthelix.databinding.ActivityAskQuestionBinding
@@ -56,11 +63,13 @@ class AskQuestionActivity : AppCompatActivity(), RemoveImageCallback {
     private lateinit var binding: ActivityAskQuestionBinding
     private val viewModel: AskQuestionViewModel by viewModels()
     private lateinit var auth: FirebaseAuth
+    private lateinit var database: FirebaseFirestore
     private lateinit var loadingDialog: LoadingDialog
     private lateinit var successDialog: SuccessDialog
     private lateinit var photoChooserDialog: PhotoChooserDialog
     private lateinit var photoAdapter: ChoosedPhotoAdapter
     private lateinit var storage: FirebaseStorage
+    var availableCoins: Long = -1
     private val photoList = ArrayList<String>()
     lateinit var imageUri: Uri
     private val contract = registerForActivityResult(ActivityResultContracts.TakePicture()) {
@@ -79,6 +88,7 @@ class AskQuestionActivity : AppCompatActivity(), RemoveImageCallback {
         window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
         imageUri = createImageUri()!!
         auth = FirebaseAuth.getInstance()
+        database = Firebase.firestore
         loadingDialog = LoadingDialog(context = this)
         successDialog = SuccessDialog(context = this)
         photoChooserDialog = PhotoChooserDialog(context = this, cameraOnClick = {
@@ -113,6 +123,22 @@ class AskQuestionActivity : AppCompatActivity(), RemoveImageCallback {
 
         photoAdapter = ChoosedPhotoAdapter(this, photoList, this)
 
+        binding.backBtn.setOnClickListener {
+            finish()
+        }
+
+        if (userId != null) {
+            database.collection("users")
+                .document(userId)
+                .addSnapshotListener { value, error ->
+
+                    val userCoins = value?.getLong("coins")
+                    if (userCoins != null) {
+                        availableCoins = userCoins
+                    }
+
+                }
+        }
 
         binding.addImageBtn.setOnClickListener {
             photoChooserDialog.showPhotoPickerDialog()
@@ -124,78 +150,114 @@ class AskQuestionActivity : AppCompatActivity(), RemoveImageCallback {
         binding.photoList.adapter = photoAdapter
 
 
+
+
+
+
+
         binding.sendBtn.setOnClickListener {
-            loadingDialog.showLoadingDialog()
-            val question = binding.etQuestion.text.toString()
-            val downloadUrlList: ArrayList<String> = ArrayList()
-            val questionDes = binding.etQuestionDes.text.toString()
-            val storageRef = storage.reference.child("userPhotos")
+            if (availableCoins >= 200) {
 
-            if (question.isNotEmpty() && questionDes.isNotEmpty()) {
-                if (userId != null) {
-                    val totalImages = photoList.size
-                    var uploadedImages = 0 // Counter for uploaded images
 
-                    for (images in photoList) {
-                        val fileName = generateUniqueFileName("png")
-                        val imageRef = storageRef.child("$userId/$fileName")
-                        val uploadTask = imageRef.putFile(Uri.parse(images))
+                loadingDialog.showLoadingDialog()
+                val question = binding.etQuestion.text.toString()
+                val downloadUrlList: ArrayList<String> = ArrayList()
+                val questionDes = binding.etQuestionDes.text.toString()
+                val storageRef = storage.reference.child("userPhotos")
 
-                        uploadTask.addOnCompleteListener { task ->
-                            if (task.isSuccessful) {
-                                // Get the download URL for the uploaded image
-                                imageRef.downloadUrl.addOnSuccessListener { uri ->
-                                    downloadUrlList.add(uri.toString())
-                                    uploadedImages++
+                if (question.isNotEmpty() && questionDes.isNotEmpty()) {
+                    if (userId != null) {
+                        val totalImages = photoList.size
+                        var uploadedImages = 0 // Counter for uploaded images
 
-                                    // Check if all images have been uploaded
-                                    if (uploadedImages == totalImages) {
-                                        // All images are uploaded, now add the question to the database
-                                        CoroutineScope(Dispatchers.Main).launch {
-                                            viewModel.addQuestionToDatabase(
-                                                CropIssueQuestion(
-                                                    "",
-                                                    userId,
-                                                    "",
-                                                    downloadUrlList,
-                                                    question,
-                                                    questionDes,
-                                                    ""
-                                                )
-                                            ).collect {
-                                                when (it) {
-                                                    is Resource.Loading -> {
-                                                        // Already showing the loading dialog
-                                                    }
-                                                    is Resource.Success -> {
-                                                        loadingDialog.dismissLoadingDialog()
-                                                        successDialog.showSuccessDialog(
-                                                            "Success",
-                                                            "Question asked successfully.\nExpect a response from an expert within 24 hours."
-                                                        )
-                                                    }
-                                                    is Resource.Error -> {
-                                                        this@AskQuestionActivity.showToast(it.message)
-                                                        loadingDialog.dismissLoadingDialog()
+                        for (images in photoList) {
+                            val fileName = generateUniqueFileName("png")
+                            val imageRef = storageRef.child("$userId/$fileName")
+                            val uploadTask = imageRef.putFile(Uri.parse(images))
+
+                            uploadTask.addOnCompleteListener { task ->
+                                if (task.isSuccessful) {
+                                    // Get the download URL for the uploaded image
+                                    imageRef.downloadUrl.addOnSuccessListener { uri ->
+                                        downloadUrlList.add(uri.toString())
+                                        uploadedImages++
+
+                                        // Check if all images have been uploaded
+                                        if (uploadedImages == totalImages) {
+                                            // All images are uploaded, now add the question to the database
+                                            CoroutineScope(Dispatchers.Main).launch {
+                                                viewModel.addQuestionToDatabase(
+                                                    CropIssueQuestion(
+                                                        "",
+                                                        userId,
+                                                        "",
+                                                        downloadUrlList,
+                                                        question,
+                                                        questionDes,
+                                                        ""
+                                                    )
+                                                ).collect {
+                                                    when (it) {
+                                                        is Resource.Loading -> {
+                                                            // Already showing the loading dialog
+                                                        }
+
+                                                        is Resource.Success -> {
+
+                                                            database.collection("users")
+                                                                .document(userId)
+                                                                .update(
+                                                                    "coins",
+                                                                    FieldValue.increment(-200)
+                                                                )
+                                                                .addOnSuccessListener {
+                                                                    loadingDialog.dismissLoadingDialog()
+                                                                    successDialog.showSuccessDialog(
+                                                                        getString(R.string.success),
+                                                                        getString(R.string.question_asked_successfully_expect_a_response_from_an_expert_within_24_hours),
+                                                                        okOnClick = {
+                                                                            successDialog.dismissSuccessDialog()
+                                                                            val intent = Intent(
+                                                                                this@AskQuestionActivity,
+                                                                                MainActivity::class.java
+                                                                            )
+                                                                            startActivity(intent)
+                                                                            finish()
+                                                                        }
+                                                                    )
+
+                                                                }
+
+
+                                                        }
+
+                                                        is Resource.Error -> {
+                                                            this@AskQuestionActivity.showToast(it.message)
+                                                            loadingDialog.dismissLoadingDialog()
+                                                        }
                                                     }
                                                 }
                                             }
                                         }
                                     }
+                                } else {
+                                    // Handle the error
+                                    this@AskQuestionActivity.showToast(
+                                        task.exception?.message ?: getString(R.string.upload_failed)
+                                    )
+                                    loadingDialog.dismissLoadingDialog()
                                 }
-                            } else {
-                                // Handle the error
-                                this@AskQuestionActivity.showToast(task.exception?.message ?: "Upload failed.")
-                                loadingDialog.dismissLoadingDialog()
                             }
                         }
                     }
+                } else {
+                    this.showToast(getString(R.string.question_or_description_cannot_be_empty))
                 }
-            } else {
-                this.showToast("Question or description cannot be empty.")
+            }else{
+                this.showToast(getString(R.string.insufficient_coins))
             }
-        }
 
+        }
 
 
     }

@@ -17,32 +17,6 @@ class HomeViewModel @Inject constructor(
     private val repository: FirebaseRepository
 ): ViewModel() {
 
-    var cropQuestionList: ArrayList<CropIssueQuestion> = ArrayList()
-
-
-    init {
-        viewModelScope.launch {
-            getQuestionList().collect{
-                when (it) {
-                    is Resource.Loading -> {
-
-
-                    }
-
-                    is Resource.Success -> {
-
-                        cropQuestionList.addAll(it.data)
-
-                    }
-
-                    is Resource.Error -> {
-
-                    }
-                }
-            }
-        }
-
-    }
 
      fun getQuestionList() : Flow<Resource<List<CropIssueQuestion>>>{
          return repository.getQuestionList()

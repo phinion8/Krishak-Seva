@@ -39,7 +39,7 @@
                 android:ems="10"
                 android:fontFamily="@font/poppins"
                 android:gravity="start|top"
-                android:hint="Describe specialities such as change of leaves, root color, bugs, tears...."
+                android:hint="@string/describe_specialities_such_as_change_of_leaves_root_color_bugs_tears"
                 android:inputType="textMultiLine"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -72,7 +72,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
-            android:id="@+id/imageView8"
+            android:id="@+id/back_btn"
             android:layout_width="35dp"
             android:layout_height="35dp"
             android:layout_marginStart="16dp"
@@ -91,9 +91,9 @@
             android:text="Ask Expert"
             android:textColor="@color/black"
             android:textSize="18sp"
-            app:layout_constraintBottom_toBottomOf="@+id/imageView8"
-            app:layout_constraintStart_toEndOf="@+id/imageView8"
-            app:layout_constraintTop_toTopOf="@+id/imageView8" />
+            app:layout_constraintBottom_toBottomOf="@+id/back_btn"
+            app:layout_constraintStart_toEndOf="@+id/back_btn"
+            app:layout_constraintTop_toTopOf="@+id/back_btn" />
 
         <Button
             android:id="@+id/send_btn"
@@ -101,7 +101,7 @@
             android:layout_height="wrap_content"
             android:layout_marginEnd="16dp"
             android:fontFamily="@font/poppins_semibold"
-            android:text="Send"
+            android:text="@string/send"
             android:backgroundTint="@color/gray100"
             android:textColor="#4CAF50"
             android:textSize="16sp"
@@ -142,7 +142,7 @@
                 android:ems="10"
                 android:fontFamily="@font/poppins"
                 android:gravity="start|top"
-                android:hint="Add a question indicating what's wrong with your crop?"
+                android:hint="@string/add_a_question_indicating_what_s_wrong_with_your_crop"
                 android:inputType="textMultiLine"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -185,7 +185,7 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="16dp"
         android:fontFamily="@font/poppins_medium"
-        android:text="Click + to add images."
+        android:text="@string/click_to_add_images"
         android:textSize="16sp"
         android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -205,7 +205,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:tint="@color/blue"
-        app:srcCompat="@drawable/ic_gallery"
+        app:srcCompat="@drawable/ic_add_photo"
         android:focusable="true" />
 
     <androidx.recyclerview.widget.RecyclerView

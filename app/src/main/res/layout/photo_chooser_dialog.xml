@@ -31,7 +31,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:fontFamily="@font/poppins_medium"
-                android:text="Complete the action using?"
+                android:text="@string/complete_the_action_using"
                 android:textColor="#4CAF50"
                 android:textSize="16sp"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -82,7 +82,7 @@
                     android:layout_marginRight="30dp"
                     android:layout_weight="1"
                     android:fontFamily="@font/poppins_semibold"
-                    android:text="Camera"
+                    android:text="@string/camera"
                     android:textColor="@color/black" />
 
                 <TextView
@@ -91,7 +91,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:fontFamily="@font/poppins_semibold"
-                    android:text="Gallery"
+                    android:text="@string/gallery"
                     android:textColor="@color/black" />
             </LinearLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>
