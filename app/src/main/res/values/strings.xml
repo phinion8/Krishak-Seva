@@ -32,7 +32,7 @@
     <string name="send">Send</string>
     <string name="welcome_to_nkrishak_seva_chatbot">Welcome To\nKrishak Seva ChatBot</string>
     <string name="write_here">Write here</string>
-    <string name="welcome_back_expert_nto_crop_healix">Welcome Back Expert!\nTo Crop Healix</string>
+    <string name="welcome_back_expert_nto_crop_healix">Welcome Back Expert!\nTo Krishak Seva</string>
     <string name="forget_password">Forget Password</string>
     <string name="log_in">Log In</string>
     <string name="don_t_have_an_account">Don\'t have an account?</string>
@@ -42,7 +42,7 @@
     <string name="answer_question">Answer Question</string>
     <string name="loading">Loading....</string>
     <string name="answer_the_question_here">Answer the question here...</string>
-    <string name="create_your_ncrop_healix_expert_account">Create Your\nCrop Healix Expert Account</string>
+    <string name="create_your_ncrop_healix_expert_account">Create Your\nKrishak Seva Expert Account</string>
     <string name="i_agree_to_the">I agree to the</string>
     <string name="terms_and_conditions">Terms and Conditions.</string>
     <string name="name">Name</string>
@@ -63,7 +63,7 @@
     <string name="namaste">Namaste!</string>
     <string name="continue_string">Continue</string>
     <string name="by_selecting_you_agree_to_our_privacy_policy_and_terms_and_conditions">By selecting you agree to our privacy policy and terms and conditions.</string>
-    <string name="welcome_back_nto_crop_healix">Welcome Back!\nTo Crop Healix</string>
+    <string name="welcome_back_nto_crop_healix">Welcome Back!\nTo Krishak Seva</string>
     <string name="home">Home</string>
     <string name="ask_ai">Ask AI</string>
     <string name="community">Community</string>
@@ -73,7 +73,7 @@
     <string name="farmer">Farmer</string>
     <string name="gardner">Gardner</string>
     <string name="expert">Expert</string>
-    <string name="create_your_ncrop_healix_account">Create Your\nCrop Healix Account</string>
+    <string name="create_your_ncrop_healix_account">Create Your\nKrishak Seva Account</string>
     <string name="expert_answer">Expert Answer</string>
     <string name="question_detail">Question Detail</string>
     <string name="coins_wallet">Coins Wallet</string>
@@ -87,7 +87,7 @@
     <string name="recent_asked_questions">Recent Asked Questions</string>
     <string name="see_all"><![CDATA[See All >]]></string>
     <string name="weather">Weather</string>
-    <string name="kanpur_20_sep">Kanpur, 20 Sep</string>
+    <string name="kanpur_20_sep">Kanpur, 23 Sep</string>
     <string name="sunset_6_08_pm">Sunset 6:08 PM</string>
     <string name="today_will_be_sunny_day">Today will be sunny day.</string>
     <string name="good_day_for_applying_pestisides">Good day for applying pestisides.</string>
@@ -96,4 +96,26 @@
     <string name="camera">Camera</string>
     <string name="gallery">Gallery</string>
     <string name="question_asked_successfully_nexpect_a_response_from_expert_within_24_hours">Question asked successfully.\nExpect a response from expert within 24 hours.</string>
+    <string name="earn_coins">Earn Coins</string>
+    <string name="see_details">See Details</string>
+    <string name="you_question_to_the_expert">You question to the expert?</string>
+    <string name="description_of_your_problem">Description of your problem?</string>
+    <string name="add_an_image_to_your_problem">Add an image to your problem?</string>
+    <string name="shop">Shop</string>
+    <string name="chatbot">ChatBot</string>
+    <string name="hey">"Hey! "</string>
+    <string name="fertilizers">Fertilizers</string>
+    <string name="pesticides">Pesticides</string>
+    <string name="view_all">View All</string>
+    <string name="introducing">Introducing</string>
+    <string name="ask_ai_coming_soon">Ask AI (Coming soon!)</string>
+    <string name="how_it_will_work">How it will work?</string>
+    <string name="user_scan_the_photo_of_the_plant">User scan the photo of the plant</string>
+    <string name="ai_will_diagonse_the_plant">AI will diagonse the plant</string>
+    <string name="heal_your_plant_crop">Heal your plant/crop.</string>
+    <string name="govt_schemes">Govt. Schemes</string>
+    <string name="watch_some_govt_schemes_to_earn_coins">Watch Some Govt. Schemes To Earn Coins.</string>
+    <string name="welcome_expert_nto_krishak_seva">Welcome Expert\nTo Krishak Seva</string>
+    <string name="available_questions">Available Questions</string>
+    <string name="hey_expert">"Hey! Expert "</string>
 </resources>

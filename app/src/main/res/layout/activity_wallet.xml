@@ -15,6 +15,7 @@
         android:gravity="center"
         android:text="@string/no_rewards_available"
         android:textColor="@color/icon_color"
+        android:textSize="16sp"
         android:visibility="visible"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -101,10 +102,11 @@
                 app:layout_constraintTop_toBottomOf="@+id/available_coins_text" />
 
             <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/earn_more_btn"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="60dp"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="8dp"
                 android:layout_marginEnd="60dp"
                 android:layout_marginBottom="16dp"
                 android:background="@drawable/button_background"
@@ -128,6 +130,7 @@
         android:fontFamily="@font/poppins_medium"
         android:text="@string/available_rewards"
         android:textColor="@color/black"
+        android:textSize="16sp"
         app:layout_constraintStart_toStartOf="@+id/cardView6"
         app:layout_constraintTop_toBottomOf="@+id/cardView6" />
 

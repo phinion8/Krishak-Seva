@@ -31,7 +31,7 @@ class LogInActivity : AppCompatActivity() {
         window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
         auth = Firebase.auth
 
-        binding.signupBtn.setOnClickListener {
+        binding.loginBtn2.setOnClickListener {
             startActivity(Intent(this, SignUpActivity::class.java))
         }
 
@@ -64,6 +64,7 @@ class LogInActivity : AppCompatActivity() {
                             loadingDialogInstance.dismiss()
 
                             startActivity(Intent(this, MainActivity::class.java))
+                            finish()
 
                             Toast.makeText(
                                 baseContext, getString(R.string.login_success_string),

@@ -8,20 +8,19 @@ import androidx.recyclerview.widget.RecyclerView
 import com.phinion.planthelix.models.LanguageItem
 import com.phinion.planthelix.R
 import com.phinion.planthelix.databinding.LanguageItemLayoutBinding
+import com.phinion.planthelix.screens.LanguageSelectionActivity
 
-class LanguageAdapter(private val context: Context, private val languageList: List<LanguageItem>): RecyclerView.Adapter<LanguageAdapter.LanguageViewHolder>() {
+class LanguageAdapter(private val context: Context, private val languageList: List<LanguageItem>, private val languageSelectionCallback: LanguageSelectionCallback): RecyclerView.Adapter<LanguageAdapter.LanguageViewHolder>() {
 
-    class LanguageViewHolder(private val binding: LanguageItemLayoutBinding): RecyclerView.ViewHolder(binding.root){
+    class LanguageViewHolder(private val binding: LanguageItemLayoutBinding, private val languageSelectionCallback: LanguageSelectionCallback): RecyclerView.ViewHolder(binding.root){
 
-        fun bind(context: Context, languageItem: LanguageItem){
+        fun bind(context: Context, languageItem: LanguageItem, position: Int){
             binding.tvLangTitle.text = languageItem.languageName
             binding.tvLangDes.text = languageItem.des
             binding.languageSelectionLayout.setOnClickListener {
 
-                binding.languageSelectionLayout.setBackgroundResource(R.drawable.language_selected_background)
-                binding.tvLangTitle.setTextColor(ContextCompat.getColor(context, R.color.blue))
-                binding.tvLangDes.setTextColor(ContextCompat.getColor(context, R.color.blue))
-                binding.langRadio.isChecked = true
+                languageSelectionCallback.languageItemOnClick(position, binding = binding)
+
             }
 
         }
@@ -30,13 +29,13 @@ class LanguageAdapter(private val context: Context, private val languageList: Li
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): LanguageViewHolder {
         val inflater = LayoutInflater.from(parent.context)
         val binding = LanguageItemLayoutBinding.inflate(inflater, parent, false)
-        return LanguageViewHolder(binding)
+        return LanguageViewHolder(binding, languageSelectionCallback)
     }
 
     override fun onBindViewHolder(holder: LanguageViewHolder, position: Int) {
 
         val languageItem = languageList[position]
-        holder.bind(context, languageItem)
+        holder.bind(context, languageItem, position)
 
 
     }

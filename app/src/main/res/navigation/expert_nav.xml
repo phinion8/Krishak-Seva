@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/expert_nav"
+    app:startDestination="@id/expertHomeFragment">
+
+    <fragment
+        android:id="@+id/expertHomeFragment"
+        android:name="com.phinion.planthelix.ExpertHomeFragment"
+        android:label="fragment_expert_home"
+        tools:layout="@layout/fragment_expert_home" />
+    <fragment
+        android:id="@+id/expertProfileFragment"
+        android:name="com.phinion.planthelix.ExpertProfileFragment"
+        android:label="fragment_expert_profile"
+        tools:layout="@layout/fragment_expert_profile" />
+    <fragment
+        android:id="@+id/communityFragment"
+        android:name="com.phinion.planthelix.CommunityFragment"
+        android:label="fragment_community"
+        tools:layout="@layout/fragment_community" />
+</navigation>

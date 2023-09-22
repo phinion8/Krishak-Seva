@@ -29,4 +29,14 @@ class MainActivity : AppCompatActivity() {
         setupWithNavController(binding.bottomNav, navController)
 
     }
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<out String>,
+        grantResults: IntArray
+    ) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+
+        val fragment = supportFragmentManager.findFragmentById(R.id.shopFragment)
+        fragment?.onRequestPermissionsResult(requestCode, permissions, grantResults)
+    }
 }

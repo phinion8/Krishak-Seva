@@ -43,6 +43,10 @@ class ChatBotActivity : AppCompatActivity() {
         window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
         window.statusBarColor = resources.getColor(R.color.black)
 
+        binding.sendBtn.setOnClickListener {
+            finish()
+        }
+
         messageAdapter = MessageAdapter(messageList)
         with(binding) {
             chatRv.adapter = messageAdapter

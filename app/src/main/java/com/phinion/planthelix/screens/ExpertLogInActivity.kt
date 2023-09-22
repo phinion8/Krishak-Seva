@@ -35,9 +35,12 @@ class ExpertLogInActivity : AppCompatActivity() {
         auth = Firebase.auth
         database = Firebase.firestore
 
-        binding.signupBtn.setOnClickListener {
+        binding.loginBtn2.setOnClickListener {
             startActivity(Intent(this, ExpertSignUpActivity::class.java))
+            finish()
         }
+
+
 
         //Inflate the dialog as custom view
         val messageBoxView = LayoutInflater.from(this).inflate(R.layout.loading_dialog_layout, null)

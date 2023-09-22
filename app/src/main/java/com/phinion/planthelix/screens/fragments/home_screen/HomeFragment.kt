@@ -15,6 +15,7 @@ import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.firestore.ktx.toObject
 import com.google.firebase.ktx.Firebase
 import com.phinion.planthelix.ExpertQuestionDetailActivity
+import com.phinion.planthelix.R
 import com.phinion.planthelix.RecentQuestionsActivity
 import com.phinion.planthelix.UserQuestionDetail
 import com.phinion.planthelix.WalletActivity
@@ -85,7 +86,7 @@ class HomeFragment : Fragment(), ExpertQuestionCallback {
 
                     val userItem = value?.toObject(ExpertUser::class.java)
                     if (userItem != null) {
-                        binding.tvUserName.text = "Hey! ${userItem.name}"
+                        binding.tvUserName.text = getString(R.string.hey) + userItem.name
                         binding.tvAvailableCoins.text = "${userItem.coins}"
                     }
 

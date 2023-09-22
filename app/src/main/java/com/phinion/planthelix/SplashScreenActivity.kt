@@ -10,6 +10,7 @@ import com.phinion.planthelix.databinding.ActivitySplashScreenBinding
 import com.phinion.planthelix.models.ExpertUser
 import com.phinion.planthelix.models.FarmerUser
 import com.phinion.planthelix.screens.LanguageSelectionActivity
+import com.phinion.planthelix.utils.loadLocale
 import com.phinion.planthelix.utils.showToast
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -27,6 +28,8 @@ class SplashScreenActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivitySplashScreenBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        loadLocale(this)
 
         window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
         firebaseAuth = FirebaseAuth.getInstance()
