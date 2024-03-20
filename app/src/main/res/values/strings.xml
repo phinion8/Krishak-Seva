@@ -87,7 +87,7 @@
     <string name="recent_asked_questions">Recent Asked Questions</string>
     <string name="see_all"><![CDATA[See All >]]></string>
     <string name="weather">Weather</string>
-    <string name="kanpur_20_sep">Kanpur, 23 Sep</string>
+    <string name="kanpur_20_sep">Kanpur, 04 Oct</string>
     <string name="sunset_6_08_pm">Sunset 6:08 PM</string>
     <string name="today_will_be_sunny_day">Today will be sunny day.</string>
     <string name="good_day_for_applying_pestisides">Good day for applying pestisides.</string>
@@ -118,4 +118,6 @@
     <string name="welcome_expert_nto_krishak_seva">Welcome Expert\nTo Krishak Seva</string>
     <string name="available_questions">Available Questions</string>
     <string name="hey_expert">"Hey! Expert "</string>
+    <string name="community_n_coming_soon">Community\n(Coming Soon!)</string>
+    <string name="farmer_expert_and_other_farmers_can_interact_with_other_in_community">Farmer, Expert And Other Farmers Can Interact With Other In Community</string>
 </resources>

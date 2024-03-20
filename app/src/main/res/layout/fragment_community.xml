@@ -6,16 +6,50 @@
     android:layout_height="match_parent"
     tools:context=".CommunityFragment">
 
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/coin_anim"
+        android:layout_width="350dp"
+        android:layout_height="350dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView21"
+        app:lottie_autoPlay="true"
+        app:lottie_loop="false"
+        app:lottie_rawRes="@raw/community_anim" />
+
     <TextView
         android:id="@+id/textView21"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:fontFamily="@font/poppins_semibold"
-        android:text="Coming Soon!"
+        android:gravity="center"
+        android:text="@string/community_n_coming_soon"
         android:textColor="#4CAF50"
         android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.073" />
+
+    <TextView
+        android:id="@+id/textView41"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:fontFamily="@font/poppins_medium"
+        android:gravity="center"
+        android:text="@string/farmer_expert_and_other_farmers_can_interact_with_other_in_community"
+        android:textColor="@color/icon_color"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="@+id/coin_anim"
+        app:layout_constraintStart_toStartOf="@+id/coin_anim"
+        app:layout_constraintTop_toBottomOf="@+id/coin_anim" />
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>

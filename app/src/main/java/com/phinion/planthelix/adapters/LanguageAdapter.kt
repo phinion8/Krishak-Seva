@@ -15,6 +15,13 @@ class LanguageAdapter(private val context: Context, private val languageList: Li
     class LanguageViewHolder(private val binding: LanguageItemLayoutBinding, private val languageSelectionCallback: LanguageSelectionCallback): RecyclerView.ViewHolder(binding.root){
 
         fun bind(context: Context, languageItem: LanguageItem, position: Int){
+
+            if (position != adapterPosition){
+                binding.languageSelectionLayout.setBackgroundResource(R.drawable.language_selector_background)
+                binding.tvLangTitle.setTextColor(ContextCompat.getColor(context, R.color.gray))
+                binding.tvLangDes.setTextColor(ContextCompat.getColor(context, R.color.gray))
+            }
+
             binding.tvLangTitle.text = languageItem.languageName
             binding.tvLangDes.text = languageItem.des
             binding.languageSelectionLayout.setOnClickListener {
@@ -26,6 +33,8 @@ class LanguageAdapter(private val context: Context, private val languageList: Li
         }
     }
 
+
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): LanguageViewHolder {
         val inflater = LayoutInflater.from(parent.context)
         val binding = LanguageItemLayoutBinding.inflate(inflater, parent, false)
@@ -36,7 +45,6 @@ class LanguageAdapter(private val context: Context, private val languageList: Li
 
         val languageItem = languageList[position]
         holder.bind(context, languageItem, position)
-
 
     }
 

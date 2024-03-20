@@ -82,6 +82,7 @@ class ShopFragment : Fragment(), ProductItemCallback {
                 dismissProductList()
             }
         } else {
+            showNoLocationView()
             dismissProductList()
             requireContext().showToast("Please enable location from settings to continue.")
 

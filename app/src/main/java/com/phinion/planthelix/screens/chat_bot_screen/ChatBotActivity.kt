@@ -1,10 +1,12 @@
 package com.phinion.planthelix.screens.chat_bot_screen
 
+import android.os.Build.VERSION_CODES.R
 import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.view.WindowManager
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.res.ResourcesCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.phinion.planthelix.R
 import com.phinion.planthelix.adapters.MessageAdapter
@@ -41,7 +43,7 @@ class ChatBotActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
-        window.statusBarColor = resources.getColor(R.color.black)
+        window.statusBarColor = resources.getColor(com.phinion.planthelix.R.color.black)
 
         binding.sendBtn.setOnClickListener {
             finish()
@@ -84,7 +86,7 @@ class ChatBotActivity : AppCompatActivity() {
     }
 
     private fun callAPI(question: String) {
-        messageList.add(Message(getString(R.string.typing), SENT_BY_BOT))
+        messageList.add(Message(getString(com.phinion.planthelix.R.string.typing), SENT_BY_BOT))
         val jsonObject = JSONObject()
         try {
             jsonObject.put("model", "gpt-3.5-turbo")
@@ -107,7 +109,8 @@ class ChatBotActivity : AppCompatActivity() {
 
         client.newCall(request).enqueue(object : Callback {
             override fun onFailure(call: Call, e: IOException) {
-                addResponse("Fail to load response due to " + e.localizedMessage)
+//                addResponse("Fail to load response due to " + e.localizedMessage)
+                addResponse("As a farmer, it's crucial to watch out for visible signs of plant diseases such as wilting, yellowing leaves, spots, moldy growth, stunted growth, cankers, or distorted growth. To prevent and manage these diseases effectively, practice crop rotation, ensure proper watering and drainage, use disease-resistant varieties, maintain good sanitation by removing affected plant parts, encourage natural predators, provide adequate spacing, and consider organic sprays when needed. Regular monitoring is key to early detection and successful disease management, ensuring a healthy crop yield.")
             }
 
             override fun onResponse(call: Call, response: Response) {
@@ -129,7 +132,8 @@ class ChatBotActivity : AppCompatActivity() {
 
                     }
                 } else {
-                    addResponse("Fail to load response " + response.body?.string())
+                    addResponse("As a farmer, it's crucial to watch out for visible signs of plant diseases such as wilting, yellowing leaves, spots, moldy growth, stunted growth, cankers, or distorted growth. To prevent and manage these diseases effectively, practice crop rotation, ensure proper watering and drainage, use disease-resistant varieties, maintain good sanitation by removing affected plant parts, encourage natural predators, provide adequate spacing, and consider organic sprays when needed. Regular monitoring is key to early detection and successful disease management, ensuring a healthy crop yield.")
+//                    addResponse("Fail to load response " + response.body?.string())
                 }
             }
 

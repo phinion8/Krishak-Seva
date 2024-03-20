@@ -45,6 +45,34 @@ class LanguageSelectionActivity : AppCompatActivity(), LanguageSelectionCallback
             setHasFixedSize(true)
         }
 
+        languageSelectionBinding.englishBtn.setOnClickListener {
+            setLocale(this, "en")
+            languageSelectionBinding.englishBtn.setBackgroundResource(R.drawable.language_selected_background)
+            languageSelectionBinding.tvLangTitle.setTextColor(ContextCompat.getColor(this, R.color.blue))
+            languageSelectionBinding.tvLangDes.setTextColor(ContextCompat.getColor(this, R.color.blue))
+            languageSelectionBinding.tvGreet.setText("Namaste!")
+            languageSelectionBinding.selectAppLangText.setText("Select your app language.")
+            languageSelectionBinding.termsText.setText("By selecting you agree to our privacy policy and terms and conditions.")
+            languageSelectionBinding.continueBtn.setText("Continue")
+            languageSelectionBinding.hindiBtn.setBackgroundResource(R.drawable.language_selector_background)
+            languageSelectionBinding.hindiTitle.setTextColor(ContextCompat.getColor(this, R.color.black))
+            languageSelectionBinding.hindiLangDes.setTextColor(ContextCompat.getColor(this, R.color.black))
+        }
+
+        languageSelectionBinding.hindiBtn.setOnClickListener {
+            setLocale(this, "hi")
+            languageSelectionBinding.hindiBtn.setBackgroundResource(R.drawable.language_selected_background)
+            languageSelectionBinding.hindiTitle.setTextColor(ContextCompat.getColor(this, R.color.blue))
+            languageSelectionBinding.hindiLangDes.setTextColor(ContextCompat.getColor(this, R.color.blue))
+            languageSelectionBinding.tvGreet.setText("नमस्ते!")
+            languageSelectionBinding.selectAppLangText.setText("ऐप भाषा चुनें|")
+            languageSelectionBinding.termsText.setText("चयन करके आप हमारी गोपनीयता नीति और नियम व शर्तों से सहमत होते हैं।")
+            languageSelectionBinding.continueBtn.setText("जरी राखे|")
+            languageSelectionBinding.englishBtn.setBackgroundResource(R.drawable.language_selector_background)
+            languageSelectionBinding.tvLangTitle.setTextColor(ContextCompat.getColor(this, R.color.black))
+            languageSelectionBinding.tvLangDes.setTextColor(ContextCompat.getColor(this, R.color.black))
+        }
+
         languageSelectionBinding.continueBtn.setOnClickListener{
             val intent = Intent(this, SignOptionSelectionActivity::class.java)
             startActivity(intent)
@@ -54,6 +82,9 @@ class LanguageSelectionActivity : AppCompatActivity(), LanguageSelectionCallback
     override fun languageItemOnClick(position: Int, binding: LanguageItemLayoutBinding) {
 
         val languageItem = languageList[position]
+
+
+
         when(languageItem.id){
             "1" -> {
                 setLocale(this, "en")
@@ -61,20 +92,18 @@ class LanguageSelectionActivity : AppCompatActivity(), LanguageSelectionCallback
                 binding.tvLangTitle.setTextColor(ContextCompat.getColor(this, R.color.blue))
                 binding.tvLangDes.setTextColor(ContextCompat.getColor(this, R.color.blue))
                 binding.langRadio.isChecked = true
-                this.recreate()
             }
 
             "2" -> {
                 setLocale(this,"hi")
-//                languageSelectionBinding.tvGreet.setText("नमस्ते!")
-//                languageSelectionBinding.selectAppLangText.setText("ऐप भाषा चुनें|")
-//                languageSelectionBinding.termsText.setText("चयन करके आप हमारी गोपनीयता नीति और नियम व शर्तों से सहमत होते हैं।")
-//                languageSelectionBinding.continueBtn.setText("जरी राखे|")
+                languageSelectionBinding.tvGreet.setText("नमस्ते!")
+                languageSelectionBinding.selectAppLangText.setText("ऐप भाषा चुनें|")
+                languageSelectionBinding.termsText.setText("चयन करके आप हमारी गोपनीयता नीति और नियम व शर्तों से सहमत होते हैं।")
+                languageSelectionBinding.continueBtn.setText("जरी राखे|")
                 binding.languageSelectionLayout.setBackgroundResource(R.drawable.language_selected_background)
                 binding.tvLangTitle.setTextColor(ContextCompat.getColor(this, R.color.blue))
                 binding.tvLangDes.setTextColor(ContextCompat.getColor(this, R.color.blue))
                 binding.langRadio.isChecked = true
-                this.recreate()
             }
         }
 

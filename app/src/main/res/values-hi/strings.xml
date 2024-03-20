@@ -85,7 +85,7 @@
     <string name="recent_asked_questions">" हाल ही में पूछे गए प्रश्न"</string>
     <string name="see_all">सभी देखें</string>
     <string name="weather">मौसम</string>
-    <string name="kanpur_20_sep">कानपुर, 23 सितम्बर</string>
+    <string name="kanpur_20_sep">कानपुर, 04 Oct</string>
     <string name="sunset_6_08_pm">सूर्यास्त 6:08 अपराह्न</string>
     <string name="today_will_be_sunny_day">आज का दिन धूप वाला रहेगा।</string>
     <string name="good_day_for_applying_pestisides">" कीटनाशक लगाने के लिए अच्छा दिन है।"</string>
@@ -117,4 +117,6 @@
     <string name="welcome_expert_nto_krishak_seva">कृषक सेवा में\nविशेषज्ञ का स्वागत है</string>
     <string name="available_questions">उपलब्ध प्रश्न</string>
     <string name="hey_expert">"नमस्ते! विशेषज्ञ "</string>
+    <string name="community_n_coming_soon">समुदाय\n(जल्द ही आ रहा है!)</string>
+    <string name="farmer_expert_and_other_farmers_can_interact_with_other_in_community">किसान, विशेषज्ञ और अन्य किसान समुदाय में अन्य लोगों के साथ बातचीत कर सकते हैं|</string>
 </resources>
